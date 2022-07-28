@@ -9,7 +9,7 @@ const Item = ({data}) => {
 
 
     return(
-        <div className="ItemProduct">
+        <div className="Item">
             <img src={`/assets/${image}`} alt="Cerradura" />
             <p>{title}</p>
             <span>$ {price}</span>
