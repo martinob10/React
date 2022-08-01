@@ -7,30 +7,28 @@ const ItemListContainer = ({section}) => {
     //productos
     const [listProducts, setListProducts ] = useState ([])
 
-    //promesa
-    const getProducts = new Promise ( (resolve, reject) => {
-        setTimeout( () => {
-            resolve (products)
-        }, 2000)
-    })
-
 
     useEffect( () => {
+        const getProducts = new Promise ( (resolve, reject) => {
+            setTimeout( () => {
+                resolve (products)
+            }, 2000)
+        })
         getProducts
-        .then ((res) => {//Respuesta si esta OK
-            //console.log("Productos ", data)
-            setListProducts(res)
-        })
-        .catch ( (error) => {//capturar el error si fallo
-           console.log()
-        })
+            .then ((res) => {//Respuesta si esta OK
+                //console.log("Productos ", data)
+                setListProducts(res)
+            })
+            .catch ( (error) => {//capturar el error si fallo
+                console.log()
+            })
 
-.finally( () => {
-//Siempre que termina tanto por ok o error    
-})
+            .finally( () => {
+                console.log()
+                //Siempre que termina tanto por ok o error    
+            })
+    }, [])
 
-
-}, [])
     return(
         <div className="list-products">
             <h3>{section}</h3>
