@@ -1,10 +1,11 @@
 
 const ItemDetail = ({dataProducts}) => {
   
-    const {title, price, peso, garantia, importada} = dataProducts
+    const {title, price, peso, garantia, importada, image} = dataProducts
 
     return(         
         <div className="item-detail">
+            <img src ={`../assets/${dataProducts.image}`}/>
 
             <p>{title}</p>
             <span>$ {price}</span>

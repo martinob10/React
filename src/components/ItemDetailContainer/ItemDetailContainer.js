@@ -1,10 +1,34 @@
 import { useEffect, useState } from "react" 
 import ItemDetailComplet from '../../utils/item.mock' 
 import ItemDetail from '../ItemDetail/ItemDetail'
+import products from "../../utils/products.mock"
+import { useParams } from "react-router-dom"
 
 const ItemDetailContainer = ({section}) => {
+    const [producData, setproductData] = useState({})
+    const {id} = useParams()
+
+    useEffect ( () =>{
+        filterById()
+
+    }, [])
+
+    const filterById = () =>{
+        products.some((product) =>{
+            if(product.id == id){
+                setproductData(product)
+          
+            } 
+        })
+
+    }
+
+
+
+
+
     
-    const [Detail, SetDetail ] = useState ([])
+    const [detail, setDetail ] = useState ([])
 
     useEffect( () => {
          //promesa
@@ -16,7 +40,7 @@ const ItemDetailContainer = ({section}) => {
         getItemDetailComplet
             .then ((res) => {//Respuesta si esta OK
                 //console.log("Productos ", data)
-                SetDetail(res)
+                setDetail(res)
             })
             .catch ( (error) => {//capturar el error si fallo
                 console.log()
@@ -28,11 +52,9 @@ const ItemDetailContainer = ({section}) => {
     }, [])
 
     return(
-        <div className="list-products">
-            <h3>{section}</h3>
-        
-            <ItemDetail  dataProducts={Detail}/>
-            </div>
+        <div className="list-products">        
+            <ItemDetail  dataProducts={detail}/>
+        </div>
         
     )
 }

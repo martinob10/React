@@ -1,23 +1,26 @@
 import './Item.css'
 import ItemCount from '../ItemCount/ItemCount'
+import{Link} from 'react-router-dom'
 
 
 const Item = ({data}) => {
   
 
-    const {title, image, price, stock} = data
+    const {title, image, price, stock, id} = data
 
 
     return(
-        <div className="Item">
-            <img src={`/assets/${image}`} alt="Cerradura" />
-            <p>{title}</p>
-            <span>$ {price}</span>
-            <p>Stock: {stock}</p>
-            <ItemCount cantidad="6"/>
-            <button>Comprar</button>
-            
-        </div>
+        //el link hace clickeable el item
+        <Link to={`/productos/${id}`} >
+            <div className="Item">
+                <img className=' img-item rounded mx-auto img-fluid' src={`/assets/${image}`} alt="Cerradura" />
+                <p>{title}</p>
+                <span>$ {price}</span>
+                <p>Stock: {stock}</p>
+                <ItemCount cantidad="6"/>
+                <button>Comprar</button>
+            </div>
+        </Link>
     )
 }
 
