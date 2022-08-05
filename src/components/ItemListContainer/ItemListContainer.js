@@ -1,40 +1,47 @@
-import { useEffect, useState } from "react" 
 import ItemList from "../ItemList/ItemList"
-import './ItemListContainer.css'
-import products from '../../utils/products.mock' 
-
+import { useState, useEffect } from "react"
+import products from '../../utils/products.mock'
+import { useParams } from 'react-router-dom'
 const ItemListContainer = ({section}) => {
-    //productos
-    const [listProducts, setListProducts ] = useState ([])
+    const [listProducts, setListProducts] = useState([])
+    const { categoryName } = useParams()
 
+    const filterCategory = products.filter((products) => products.category === categoryName)
+    
+    const getProducts = () => new Promise( (resolve, reject) => {
+        setTimeout(() => {
+            if (categoryName) {
+                resolve(filterCategory)
+            }
 
-    useEffect( () => {
-        const getProducts = new Promise ( (resolve, reject) => {
-            setTimeout( () => {
-                resolve (products)
-            }, 2000)
-        })
-        getProducts
-            .then ((res) => {//Respuesta si esta OK
-                //console.log("Productos ", data)
-                setListProducts(res)
-            })
-            .catch ( (error) => {//capturar el error si fallo
-                console.log()
-            })
+            else {
+                resolve(products)
+            }
+        }, 2000);
+    })
 
-            .finally( () => {
-                console.log()
-                //Siempre que termina tanto por ok o error    
-            })
-    }, [])
+    useEffect(() => {
+        const getProduct = async () => {
+            try{
+                const responseLog = await getProducts()
+                setListProducts(responseLog)
+
+                
+            }
+
+            catch(error){ console.log(error) }
+        }
+        getProduct()
+    }, )
 
     return(
-        <div className="list-products">
-            <h3>{section}</h3>
-            <ItemList dataProducts={listProducts}/>
+        <div>
+            <h4>{section}</h4>
+            <div className='listProduct'>
+                <ItemList dataProducts={listProducts}></ItemList>
+            </div>
         </div>
     )
 }
 
-export default ItemListContainer
+export default ItemListContainer;

@@ -2,10 +2,9 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBar from './components/NavBar/NavBar';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Home from './pages/Home';
 import Contacto from './pages/Contacto';
-import Productos from './pages/Productos';
-import Detail from './pages/Details';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 
 
 
@@ -23,17 +22,13 @@ function App() {
           <h1 className='text-center'>Ecommerce Coder</h1>
           <NavBar />
           <Routes>
-
-            <Route path='/' element={<Home /> }/>
-
-            <Route path='/contacto' element={<Contacto/>}/>
-
-            <Route path='/productos' element={<Productos/>}/>
-            <Route path='/productos/:id' element={<Detail/>}/>
-
-
-            <Route path='*' element={<h2 className='text-center'>Error 404</h2>}/>
-          </Routes>
+          <Route path='/' element={<ItemListContainer />} />
+          <Route path='/products' element={<ItemListContainer/>} />
+          <Route path='/category/:categoryName' element={<ItemListContainer />} />
+          <Route path='/products/:id' element={<ItemDetailContainer />} />
+          <Route path='/contact' element={<Contacto />} />
+          <Route path='*' element={<h1>Error 404</h1>} />
+        </Routes>
 
     </BrowserRouter>
    

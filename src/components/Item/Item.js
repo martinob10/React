@@ -11,16 +11,22 @@ const Item = ({data}) => {
 
     return(
         //el link hace clickeable el item
-        <Link to={`/productos/${id}`} >
-            <div className="Item">
-                <img className=' img-item rounded mx-auto img-fluid' src={`/assets/${image}`} alt="Cerradura" />
-                <p>{title}</p>
-                <span>$ {price}</span>
-                <p>Stock: {stock}</p>
-                <ItemCount cantidad="6"/>
-                <button>Comprar</button>
-            </div>
-        </Link>
+        <div  key= {id} className='itemProduct'>
+            <Link  to={`/products/${id}`}>
+        
+                <div className="Item">
+                    <img className=' img-item rounded mx-auto img-fluid' src={`/assets/${image}`} alt="Cerradura" />
+                    <p>{title}</p>
+                    <span>$ {price}</span>
+                    <p>Stock: {stock}</p>
+                    <ItemCount cantidad={stock}/>
+                    <button>Comprar</button>
+                    
+                </div>
+                
+                </Link>
+        </div>
+        
     )
 }
 

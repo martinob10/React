@@ -1,11 +1,14 @@
+import ItemListContainer from "../components/ItemListContainer/ItemListContainer"
 
 
 const Productos = () => {
     return (
-        <>
-        <h2>Productos</h2>
-        </>
-       
+       <div className='d-flex row'>
+                <div className='productos'>
+                    <h2>Productos: </h2>
+                    <ItemListContainer />
+                </div>
+        </div>
     )
 }
 

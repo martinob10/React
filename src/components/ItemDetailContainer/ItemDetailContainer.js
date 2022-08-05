@@ -1,62 +1,42 @@
-import { useEffect, useState } from "react" 
-import ItemDetailComplet from '../../utils/item.mock' 
-import ItemDetail from '../ItemDetail/ItemDetail'
-import products from "../../utils/products.mock"
-import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react" ;
+import ItemDetail from '../ItemDetail/ItemDetail';
+import products from "../../utils/products.mock";
+import { useParams } from "react-router-dom";
 
-const ItemDetailContainer = ({section}) => {
-    const [producData, setproductData] = useState({})
-    const {id} = useParams()
 
-    useEffect ( () =>{
-        filterById()
+const ItemDetailContainer = ({section}) =>{
+  const [listItem, setItem] = useState({})
+  const {id} = useParams ()
 
-    }, [])
+  const filterId = products.filter((products) => products.id === Number(id))
+  const getItem = () => new Promise( (resolve, reject) => {
+    setTimeout(() => {
+        resolve(filterId[0]);
+    }, 2000);
+})
 
-    const filterById = () =>{
-        products.some((product) =>{
-            if(product.id == id){
-                setproductData(product)
-          
-            } 
-        })
+useEffect(() => {
+    const ItemAwait = async() => {
+        try {
+            const res = await getItem()
+            setItem(res);
+        }
 
+        catch(error) {
+            console.log(error);
+        }
     }
+    ItemAwait();
+}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-
-
-
-
-    
-    const [detail, setDetail ] = useState ([])
-
-    useEffect( () => {
-         //promesa
-    const getItemDetailComplet = new Promise ( (resolve, reject) => {
-        setTimeout( () => {
-            resolve (ItemDetailComplet[0])
-        }, 2000)
-    })
-        getItemDetailComplet
-            .then ((res) => {//Respuesta si esta OK
-                //console.log("Productos ", data)
-                setDetail(res)
-            })
-            .catch ( (error) => {//capturar el error si fallo
-                console.log()
-            })
-
-            .finally( () => {
-                //Siempre que termina tanto por ok o error    
-            })
-    }, [])
-
-    return(
-        <div className="list-products">        
-            <ItemDetail  dataProducts={detail}/>
+return(
+    <div>
+        <h4>{section}</h4>
+        <div className="container">
+            <ItemDetail dataProducts={listItem} />
         </div>
-        
-    )
+    </div>
+)
 }
 
-export default ItemDetailContainer
+export default ItemDetailContainer;

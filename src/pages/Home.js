@@ -5,7 +5,7 @@ const Home = () => {
         <div className="App">
             <div className='d-flex row'>
                 <div className='productos'>
-                    <h2>Listas de Productos:</h2>
+                    <h2>Bienvenidosa la Tienda.</h2>
                     <ItemListContainer section="Destacados:" />
                 </div>
             </div>
