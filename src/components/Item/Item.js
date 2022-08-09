@@ -19,12 +19,13 @@ const Item = ({data}) => {
                     <p>{title}</p>
                     <span>$ {price}</span>
                     <p>Stock: {stock}</p>
-                    <ItemCount cantidad={stock}/>
+                    
                     <button>Comprar</button>
                     
                 </div>
                 
                 </Link>
+                <ItemCount cantidad={stock}/>
         </div>
         
     )

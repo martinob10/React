@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBar from './components/NavBar/NavBar';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Contacto from './pages/Contacto';
+import Checkout from './pages/Checkout';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='/category/:categoryName' element={<ItemListContainer />} />
           <Route path='/products/:id' element={<ItemDetailContainer />} />
           <Route path='/contact' element={<Contacto />} />
+          <Route path='/cart' element={<Checkout />} />
           <Route path='*' element={<h1>Error 404</h1>} />
         </Routes>
 
