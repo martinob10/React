@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CartContext } from '../../context/CartContext'
 
 
-const ItemCount = ({stock, setQuantitySelected}) => {
+const ItemCount = ({stock, setQuantitySelected, productData}) => {
+    const {addProductToCart} = useContext(CartContext)
 
     const [countQuantity, setCountQuantity] = useState(1)
     
@@ -14,6 +16,8 @@ const ItemCount = ({stock, setQuantitySelected}) => {
            
     }
     const onAdd = () =>{
+        console.log(productData)
+        addProductToCart(productData)
         setQuantitySelected(countQuantity)
 
     }

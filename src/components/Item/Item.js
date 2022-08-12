@@ -20,8 +20,6 @@ const Item = ({data}) => {
                     <span>$ {price}</span>
                     <p>Stock: {stock}</p>
                     
-                    <button>Comprar</button>
-                    
                 </div>
                 
                 </Link>

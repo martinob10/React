@@ -24,7 +24,7 @@ const ItemDetail = ({dataProducts}) => {
         {console.log(quantitySelected)}
 
         {quantitySelected > 1 ? <Link to="/cart"><button>Terminar</button></Link> : 
-        <ItemCount setQuantitySelected={setQuantitySelected} />}
+        <ItemCount setQuantitySelected={setQuantitySelected} productData={dataProducts}/>}
         </>
     )
 }
