@@ -6,7 +6,7 @@ const ItemDetail = ({dataProducts}) => {
 
     const [quantitySelected, setQuantitySelected] = useState(1)
 
-    const {title, price, peso, garantia, importada, image} = dataProducts
+    const {title, price, peso, garantia, importada, image, stock} = dataProducts
 
     return(
         <>
@@ -18,6 +18,7 @@ const ItemDetail = ({dataProducts}) => {
             <p>Peso: {peso}</p>
             <p>Garantia: {garantia}</p>
             <p>Importada: {importada}</p>
+            <p>stock: {stock}</p>
 
             
         </div>

@@ -1,12 +1,12 @@
+
 import './Item.css'
-import ItemCount from '../ItemCount/ItemCount'
 import{Link} from 'react-router-dom'
 
 
-const Item = ({data}) => {
-  
 
-    const {title, image, price, stock, id} = data
+const Item = ({data}) => {
+   
+    const {title, image, price, id, stock} = data
 
 
     return(
@@ -17,13 +17,14 @@ const Item = ({data}) => {
                 <div className="Item">
                     <img className=' img-item rounded mx-auto img-fluid' src={`/assets/${image}`} alt="Cerradura" />
                     <p>{title}</p>
-                    <span>$ {price}</span>
+                    
+                    <span className="card-title">$ { price }</span>
                     <p>Stock: {stock}</p>
                     
                 </div>
                 
                 </Link>
-                <ItemCount cantidad={stock}/>
+              
         </div>
         
     )
