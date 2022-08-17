@@ -4,28 +4,30 @@ import { Link } from "react-router-dom"
 
 const ItemDetail = ({dataProducts}) => {
 
-    const [quantitySelected, setQuantitySelected] = useState(1)
+    const [quantitySelected, setQuantitySelected] = useState(0)
 
     const {title, price, peso, garantia, importada, image, stock} = dataProducts
 
     return(
         <>
-        <div className="item-detail">
-            <img src ={`/assets/${image}`} alt="."/>
+            <div className="item-detail">
+                <img src ={`/assets/${image}`} alt="."/>
 
-            <p>{title}</p>
-            <span>$ {price}</span>
-            <p>Peso: {peso}</p>
-            <p>Garantia: {garantia}</p>
-            <p>Importada: {importada}</p>
-            <p>stock: {stock}</p>
+                <p>{title}</p>
+                <span>$ {price}</span>
+                <p>Peso: {peso}</p>
+                <p>Garantia: {garantia}</p>
+                <p>Importada: {importada}</p>
+                <p>stock: {stock}</p>
 
-            
-        </div>
-        {console.log(quantitySelected)}
+                
+            </div>
+            {console.log(quantitySelected)}
 
-        {quantitySelected > 1 ? <Link to="/cart"><button>Terminar</button></Link> : 
-        <ItemCount setQuantitySelected={setQuantitySelected} productData={dataProducts}/>}
+            {
+            quantitySelected > 0? <button><Link to="/cart">TERMINAR COMPRA</Link></button> : <ItemCount setQuantitySelected={setQuantitySelected} productData={dataProducts}/>
+            }
+
         </>
     )
 }
