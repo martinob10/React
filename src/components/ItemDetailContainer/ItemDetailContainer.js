@@ -2,6 +2,9 @@ import { useEffect, useState } from "react" ;
 import ItemDetail from '../ItemDetail/ItemDetail';
 import products from "../../utils/products.mock";
 import { useParams } from "react-router-dom";
+//Firebase
+import db from "../../firebaseConfig"
+import { doc, getDoc } from "firebase/firestore"
 
 
 const ItemDetailContainer = ({section}) =>{
@@ -15,19 +18,23 @@ const ItemDetailContainer = ({section}) =>{
     }, 2000);
 })
 
-useEffect(() => {
-    const ItemAwait = async() => {
-        try {
-            const res = await getItem()
-            setItem(res);
-        }
+useEffect( () => {
+    getProduct()
+    .then((res) => {
+        setItem(res)
+    })
+}, [id])
 
-        catch(error) {
-            console.log(error);
-        }
-    }
-    ItemAwait();
-}, []); // eslint-disable-line react-hooks/exhaustive-deps
+const getProduct = async () => {
+    const docRef = doc(db, 'productos', id)
+    const docSnapshot = await getDoc(docRef)
+    let product = docSnapshot.data()
+    product.id = docSnapshot.id
+    console.log('data con id:', product)
+    return product
+}
+
+
 
 return(
     <div>
