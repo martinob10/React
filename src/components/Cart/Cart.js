@@ -57,18 +57,17 @@ const Cart = () => {
             <div className="info-checkout">
                 {console.log("order: ", order)}
                 <h2>TU CARRITO</h2>
-                <span>TOTAL (2 productos) <b>$ 66.998</b></span>
-                <p>Los artículos en tu carrito no están reservados. Terminá el proceso de compra ahora para hacerte con ellos.</p>
+                
                 <div className="container-checkout-products">
                     {cartProducts.map( (cartProduct) => {
                         const { title, image, price} = cartProduct
                         return(
                             <div className="checkout-item">
                                 <img src={`./assets/${image}`} alt="imagen" />
-                                <div className="info-checkout-item">
+                                <div >
                                     <p>{title}</p>
-                                    <p>TAMANO: L</p>
-                                    <p className="checkout-item-price">$ {price}</p>
+                                    <p>Cntidad</p>
+                                    <p>$ {price}</p>
                                     <button>X</button>
                                 </div>
                             </div>
